@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 140">
+  <defs>
+    <linearGradient id="vgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <text x="0" y="95"
+        font-family="Inter, Helvetica, Arial, sans-serif"
+        font-size="90"
+        font-weight="700"
+        fill="#0F172A">
+    Freight
+  </text>
+
+  <text x="335" y="95"
+        font-family="Inter, Helvetica, Arial, sans-serif"
+        font-size="90"
+        font-weight="700"
+        fill="url(#vgrad)">
+    Vera
+  </text>
+
+  <!-- checkmark V -->
+  <path d="M395 70 L430 105 L510 15"
+        stroke="#2563EB"
+        stroke-width="10"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
