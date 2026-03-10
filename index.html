@@ -1,174 +1,702 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Freightvera</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Freightvera</title>
+  <meta name="description" content="Freightvera is a trust platform for freight. Verify brokers, carriers, and shippers before doing business.">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg-accent: #eef4ff;
+      --card: rgba(255,255,255,0.82);
+      --card-border: rgba(148,163,184,0.18);
+      --text: #0f172a;
+      --muted: #475569;
+      --muted-2: #64748b;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-soft: #dbeafe;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.10);
+      --radius-lg: 26px;
+      --radius-md: 16px;
+    }
 
-<meta name="description" content="Freightvera is a trust platform for freight. Verify brokers, carriers, and shippers before doing business.">
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-*{
-box-sizing:border-box;
-}
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.10), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    }
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#ffffff;
-color:#0f172a;
-}
+    a {
+      color: inherit;
+    }
 
-.page{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:40px 20px;
-}
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
 
-.wrap{
-max-width:900px;
-text-align:center;
-}
+    .topbar {
+      padding: 18px 0;
+    }
 
-.logo{
-max-width:380px;
-margin-bottom:28px;
-}
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(148,163,184,0.15);
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+    }
 
-h1{
-font-size:44px;
-margin:0 0 14px;
-font-weight:700;
-}
+    .brand img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
 
-h2{
-font-size:24px;
-margin:0 0 22px;
-font-weight:600;
-color:#1e293b;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-p{
-font-size:18px;
-line-height:1.65;
-color:#334155;
-max-width:700px;
-margin:0 auto 34px;
-}
+    .nav a {
+      text-decoration: none;
+    }
 
-.highlight{
-color:#2563eb;
-font-weight:700;
-}
+    .nav a:hover {
+      color: var(--text);
+    }
 
-.buttons{
-display:flex;
-gap:16px;
-justify-content:center;
-flex-wrap:wrap;
-margin-bottom:20px;
-}
+    .hero {
+      padding: 34px 0 22px;
+    }
 
-.btn{
-padding:14px 24px;
-border-radius:10px;
-font-weight:700;
-text-decoration:none;
-font-size:16px;
-transition:all .2s ease;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
 
-.btn-primary{
-background:#2563eb;
-color:white;
-}
+    .hero-copy,
+    .hero-panel,
+    .section-card,
+    .info-card {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-lg);
+    }
 
-.btn-primary:hover{
-background:#1d4ed8;
-}
+    .hero-copy {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
 
-.btn-secondary{
-background:white;
-border:1px solid #cbd5e1;
-color:#0f172a;
-}
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.16) 0%, rgba(37,99,235,0) 70%);
+      pointer-events: none;
+    }
 
-.btn-secondary:hover{
-background:#f8fafc;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+    }
 
-.note{
-font-size:14px;
-color:#64748b;
-}
+    h1 {
+      margin: 0 0 16px;
+      font-size: 58px;
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
 
-@media(max-width:640px){
+    .hero-sub {
+      margin: 0 0 16px;
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 710px;
+    }
 
-h1{
-font-size:34px;
-}
+    .hero-sub strong {
+      color: var(--text);
+    }
 
-h2{
-font-size:20px;
-}
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 28px 0 24px;
+    }
 
-p{
-font-size:16px;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
 
-.logo{
-max-width:300px;
-}
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, var(--blue) 100%);
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+    }
 
-}
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(37, 99, 235, 0.30);
+    }
 
-</style>
+    .btn-secondary {
+      background: #ffffff;
+      border-color: rgba(148,163,184,0.28);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(148,163,184,0.16);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted-2);
+      font-weight: 600;
+    }
+
+    .hero-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(239,246,255,0.94) 100%);
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      margin-bottom: 12px;
+    }
+
+    .search-card {
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.18);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.07);
+      margin-bottom: 18px;
+    }
+
+    .search-card h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .search-card p {
+      margin: 0 0 18px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .field {
+      width: 100%;
+      min-height: 54px;
+      border-radius: 14px;
+      border: 1px solid #dbe4f0;
+      background: #f8fafc;
+      padding: 0 16px;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .search-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-actions .btn {
+      flex: 1;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(148,163,184,0.14);
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .sections {
+      padding: 18px 0 70px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-header h2 {
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+
+    .section-header p {
+      margin: 0 auto;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .section-card {
+      padding: 24px;
+    }
+
+    .section-card .icon {
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      color: var(--blue-dark);
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .section-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .section-card p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: none;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .info-card {
+      padding: 26px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 26px;
+    }
+
+    .info-card p {
+      margin: 0 0 18px;
+      max-width: none;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .trust-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid rgba(148,163,184,0.12);
+    }
+
+    .trust-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .trust-item span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--muted-2);
+    }
+
+    .cta-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #0f172a 0%, #16233f 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.34) 0%, rgba(59,130,246,0) 72%);
+    }
+
+    .cta-card p,
+    .cta-card .note {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .cta-card .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+      color: #ffffff;
+    }
+
+    .footer {
+      padding: 0 0 34px;
+    }
+
+    .footer-inner {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .info-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .section-card,
+      .info-card {
+        padding: 24px;
+      }
+
+      .mini-stats,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        padding: 14px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .brand img {
+        height: 36px;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero-sub {
+        font-size: 18px;
+      }
+
+      .section-header h2 {
+        font-size: 30px;
+      }
+
+      .hero-actions,
+      .search-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#">
+          <img src="freightvera-logo.png" alt="Freightvera logo">
+        </a>
+        <nav class="nav">
+          <a href="#how-it-works">How it works</a>
+          <a href="#why-freightvera">Why Freightvera</a>
+          <a href="mailto:you@example.com">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<div class="page">
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Trust platform for modern freight</div>
+            <h1>Verify who you work with before you move the load.</h1>
+            <p class="hero-sub">
+              Freightvera helps <strong>brokers, carriers, and shippers</strong> check each other with a cleaner, smarter trust layer for freight.
+            </p>
+            <p class="hero-sub">
+              Review safety signals, business credibility, and reputation indicators before you commit to a new relationship.
+            </p>
 
-<div class="wrap">
+            <div class="hero-actions">
+              <a href="#search-preview" class="btn btn-primary">Preview Search Experience</a>
+              <a href="mailto:you@example.com" class="btn btn-secondary">Join Early Access</a>
+            </div>
 
-<img src="freightvera-logo.png" class="logo">
+            <div class="mini-stats">
+              <div class="stat">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Parties on one trust platform</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">1</span>
+                <span class="stat-label">Place to review risk before booking</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Faster screening and decision support</span>
+              </div>
+            </div>
+          </div>
 
-<h1>Trust in Freight Starts Here</h1>
+          <div class="hero-panel" id="search-preview">
+            <div>
+              <div class="panel-title">Search Preview</div>
+              <div class="search-card">
+                <h3>Search broker, carrier, or shipper</h3>
+                <p>Type a DOT number, MC number, company name, or email domain to preview how Freightvera will help evaluate new partners.</p>
+                <input class="field" type="text" placeholder="Enter DOT, MC, company name, or domain">
+                <div class="search-actions">
+                  <a href="#" class="btn btn-primary">Search (Coming Soon)</a>
+                  <a href="mailto:you@example.com" class="btn btn-secondary">Request Demo</a>
+                </div>
+              </div>
+            </div>
 
-<h2>
-Verify <span class="highlight">Brokers</span>,
-<span class="highlight">Carriers</span>, and
-<span class="highlight">Shippers</span> before you move a load.
-</h2>
+            <div class="panel-list">
+              <div class="list-item">
+                <span>Broker risk and reputation screening</span>
+                <span class="badge">Planned</span>
+              </div>
+              <div class="list-item">
+                <span>Carrier trust and safety review</span>
+                <span class="badge">Planned</span>
+              </div>
+              <div class="list-item">
+                <span>Shipper credibility signals</span>
+                <span class="badge">Planned</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p>
-Freightvera is building a neutral trust platform for the freight industry.
-Check safety data, reputation signals, and risk indicators before doing
-business with a new company.
-</p>
+    <section class="sections" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>Built to make freight relationships less blind.</h2>
+          <p>Most tools only show one side of the picture. Freightvera is being designed to help every party in the supply chain screen the other side with more confidence.</p>
+        </div>
 
-<div class="buttons">
+        <div class="cards">
+          <div class="section-card">
+            <div class="icon">↔</div>
+            <h3>Mutual verification</h3>
+            <p>Brokers can screen carriers, carriers can screen brokers, and shippers can be reviewed too. The goal is a more balanced trust environment across freight.</p>
+          </div>
+          <div class="section-card">
+            <div class="icon">✓</div>
+            <h3>Cleaner decision signals</h3>
+            <p>Bring together data points that help identify credibility, operating quality, and potential risk before anyone commits to the load.</p>
+          </div>
+          <div class="section-card">
+            <div class="icon">⚡</div>
+            <h3>Faster screening workflow</h3>
+            <p>Instead of piecing together scattered information manually, Freightvera aims to make trust screening quicker, simpler, and easier to act on.</p>
+          </div>
+        </div>
 
-<a href="#" class="btn btn-primary">
-Search Company (Coming Soon)
-</a>
+        <div class="info-grid" id="why-freightvera">
+          <div class="info-card">
+            <h3>What Freightvera is being built to surface</h3>
+            <p>As the platform grows, the goal is to surface the kinds of signals that actually matter when deciding whether to work with a company in freight.</p>
+            <div class="trust-grid">
+              <div class="trust-item">
+                <strong>Safety & compliance</strong>
+                <span>Relevant operating and compliance indicators that support better screening.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Business credibility</strong>
+                <span>Signals that help identify whether a company presents professionally and operates consistently.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Reputation patterns</strong>
+                <span>Helpful context around how a company is perceived by the market over time.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Risk indicators</strong>
+                <span>Early warning signs that may suggest elevated operational or fraud-related concern.</span>
+              </div>
+            </div>
+          </div>
 
-<a href="mailto:you@example.com" class="btn btn-secondary">
-Join Early Access
-</a>
+          <div class="info-card cta-card">
+            <div>
+              <h3>Be early to the platform</h3>
+              <p>Freightvera is at the early stage. If you want to help shape it, get early visibility into what’s being built, or talk through use cases, reach out now.</p>
+            </div>
+            <div>
+              <div class="hero-actions" style="margin:0 0 12px;">
+                <a href="mailto:you@example.com" class="btn btn-primary">Join Early Access</a>
+                <a href="mailto:you@example.com" class="btn btn-secondary">Talk to Us</a>
+              </div>
+              <div class="note">A new standard for transparency in freight.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-</div>
-
-<div class="note">
-A new standard for transparency in freight.
-</div>
-
-</div>
-
-</div>
-
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        © 2026 Freightvera. Trust and transparency for modern freight.
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
